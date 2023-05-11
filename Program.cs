@@ -1,5 +1,7 @@
 ﻿using ConsoleMediatR.Notifications.Order;
 using ConsoleMediatR.Notifications.Payment;
+using ConsoleMediatR.Requests;
+using ConsoleMediatR.Streams;
 using MediatR;
 using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +62,8 @@ namespace ConsoleMediatR
                 Console.WriteLine("1. Send Notification 'OrderCreated'.");
                 Console.WriteLine("2. Send Notification 'OrderProcessingPaymentNotification'.");
                 Console.WriteLine("3. Send Notification 'PaymentApprovedNotification'.");
+                Console.WriteLine("4. Send Stream Request 'SimpleStreamRequest'.");
+                Console.WriteLine("5. Send Sample Request 'SimpleRequest'.");
                 Console.WriteLine();
                 try
                 {
@@ -84,6 +88,21 @@ namespace ConsoleMediatR
                     case 3:
                         await _mediator.Publish(new PaymentApprovedNotification(Guid.NewGuid()), cancellationToken);
                         break;
+                    case 4:
+                        _ =  Task.Run(async () =>
+                        {
+                            await foreach (var response in _mediator.CreateStream<SimpleStreamResponse>(new SimpleStreamRequest(), cancellationToken))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Received Stream Count:{response.Count} Request Id:{response.RequestId}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            };
+                        });
+                        break;
+                    case 5:
+                        var response = await _mediator.Send(new SimpleRequest());
+                        break;
+
                     default:
                         Console.WriteLine("Number invalid!");
                         break;
