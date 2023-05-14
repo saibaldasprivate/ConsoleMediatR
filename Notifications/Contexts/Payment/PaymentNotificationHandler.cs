@@ -1,7 +1,7 @@
 ﻿using ConsoleMediatR.Notifications.Order;
 using MediatR;
 
-namespace ConsoleMediatR.Contexts.Payment
+namespace ConsoleMediatR.Notifications.Contexts.Payment
 {
     internal class PaymentNotificationHandler : INotificationHandler<OrderProcessingPaymentNotification>
     {

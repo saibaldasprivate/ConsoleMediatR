@@ -91,18 +91,20 @@ namespace ConsoleMediatR
                     case 4:
                         _ =  Task.Run(async () =>
                         {
+                           
                             await foreach (var response in _mediator.CreateStream<SimpleStreamResponse>(new SimpleStreamRequest(), cancellationToken))
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine($"Received Stream Count:{response.Count} Request Id:{response.RequestId}");
                                 Console.ForegroundColor = ConsoleColor.White;
                             };
+
+                            Console.WriteLine($"Stream Request finished.");
                         });
                         break;
                     case 5:
                         var response = await _mediator.Send(new SimpleRequest());
                         break;
-
                     default:
                         Console.WriteLine("Number invalid!");
                         break;

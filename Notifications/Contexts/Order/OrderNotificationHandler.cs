@@ -2,9 +2,9 @@
 using ConsoleMediatR.Notifications.Payment;
 using MediatR;
 
-namespace ConsoleMediatR.Contexts.Order
+namespace ConsoleMediatR.Notifications.Contexts.Order
 {
-    public class OrderNotificationHandler : 
+    public class OrderNotificationHandler :
         INotificationHandler<OrderProcessingPaymentNotification>
         , INotificationHandler<PaymentApprovedNotification>
     {

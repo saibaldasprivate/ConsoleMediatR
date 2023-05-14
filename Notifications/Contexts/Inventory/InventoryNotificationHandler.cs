@@ -2,7 +2,7 @@
 using ConsoleMediatR.Notifications.Payment;
 using MediatR;
 
-namespace ConsoleMediatR.Contexts.Inventory
+namespace ConsoleMediatR.Notifications.Contexts.Inventory
 {
     internal class InventoryNotificationHandler : INotificationHandler<PaymentApprovedNotification>,
         INotificationHandler<OrderCreatedNotification>

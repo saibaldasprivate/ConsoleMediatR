@@ -13,6 +13,11 @@ namespace ConsoleMediatR.Streams
                 _count++;
 
                 yield return new SimpleStreamResponse(request.Id, _count);
+
+                if (_count == 10)
+                {
+                    break;
+                }
             }
         }
     }

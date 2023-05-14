@@ -1,7 +1,7 @@
 ﻿using ConsoleMediatR.Notifications.Order;
 using MediatR;
 
-namespace ConsoleMediatR.Contexts.Delivery
+namespace ConsoleMediatR.Notifications.Contexts.Delivery
 {
     internal class DeliveryNotificationHandler : INotificationHandler<OrderSuccesfullyCompletedNotification>
     {
